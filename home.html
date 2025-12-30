@@ -1,6 +1,6 @@
 <!-- =========================
      home.html
-     Boo Industries — Paper theme hub
+     Boo Industries — Charcoal + ink-gold hub (matches artwork)
      ========================= -->
 <!doctype html>
 <html lang="en">
@@ -11,28 +11,71 @@
   <meta name="description" content="Boo Industries — calm, mindful software applications for everyday peace of mind." />
   <style>
     :root{
-      /* Paper theme (matches Boo Writer vibe) */
-      --bg:#f3f0e7;
-      --panel: rgba(255,255,255,.62);
-      --panel2: rgba(0,0,0,.06);
-      --text: rgba(18,18,18,.92);
-      --muted: rgba(18,18,18,.68);
-      --muted2: rgba(18,18,18,.55);
-      --line: rgba(0,0,0,.14);
-      --btn: rgba(0,0,0,.06);
-      --btnHover: rgba(0,0,0,.10);
-      --shadow: 0 20px 60px rgba(0,0,0,.18);
+      /* Charcoal + inky gold (matches uploaded artwork) */
+      --bg:#151311;
+      --bg2:#1b1816;
+      --panel: rgba(18,16,14,.62);
+      --panel2: rgba(255,255,255,.04);
+      --text: rgba(245,238,226,.94);
+      --muted: rgba(245,238,226,.72);
+      --muted2: rgba(245,238,226,.55);
+      --gold:#d4aa58;
+      --gold2:#f3d18a;
+      --line: rgba(212,170,88,.28);
+      --btn: rgba(212,170,88,.10);
+      --btnHover: rgba(212,170,88,.18);
+      --shadow: 0 28px 90px rgba(0,0,0,.55);
       --max: 920px;
       --radius: 22px;
     }
 
     *{ box-sizing:border-box; }
     html, body { height:100%; }
+
     body{
       margin:0;
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji", "Segoe UI Emoji";
-      background: var(--bg);
       color: var(--text);
+
+      /* charcoal atmosphere + subtle golden bloom */
+      background:
+        radial-gradient(1200px 800px at 50% 35%, rgba(255,255,255,.05), transparent 60%),
+        radial-gradient(900px 600px at 20% 70%, rgba(212,170,88,.06), transparent 55%),
+        linear-gradient(180deg, var(--bg2), var(--bg));
+      position: relative;
+      overflow-x:hidden;
+    }
+
+    /* subtle texture */
+    body::before{
+      content:"";
+      position: fixed;
+      inset: 0;
+      pointer-events:none;
+      background:
+        repeating-linear-gradient(
+          0deg,
+          rgba(255,255,255,.018) 0px,
+          rgba(255,255,255,.018) 1px,
+          transparent 2px,
+          transparent 6px
+        );
+      mix-blend-mode: soft-light;
+      opacity: .35;
+    }
+
+    /* faint ink-glimmer */
+    body::after{
+      content:"";
+      position: fixed;
+      inset: -20%;
+      pointer-events:none;
+      background:
+        radial-gradient(closest-side at 55% 42%, rgba(212,170,88,.10), transparent 60%),
+        radial-gradient(closest-side at 46% 46%, rgba(243,209,138,.06), transparent 62%);
+      filter: blur(10px);
+      opacity: .6;
+      transform: translateZ(0);
     }
 
     .page{
@@ -41,6 +84,8 @@
       align-items:center;
       justify-content:center;
       padding: 26px 16px;
+      position: relative;
+      z-index: 1;
     }
 
     .card{
@@ -50,6 +95,21 @@
       border-radius: var(--radius);
       box-shadow: var(--shadow);
       padding: 28px 22px;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* subtle top ink stroke */
+    .card::before{
+      content:"";
+      position:absolute;
+      left:18px; right:18px; top:14px;
+      height:1px;
+      background: linear-gradient(90deg, transparent, rgba(212,170,88,.55), transparent);
+      opacity:.9;
+      pointer-events:none;
     }
 
     header{
@@ -63,7 +123,7 @@
     h1{
       margin:0;
       font-size: clamp(20px, 3.6vw, 30px);
-      font-weight: 600;
+      font-weight: 620;
       letter-spacing:.2px;
     }
 
@@ -73,7 +133,10 @@
       border-bottom: 1px solid transparent;
       font-size: 13px;
     }
-    nav a:hover{ border-bottom-color: var(--line); color: var(--text); }
+    nav a:hover{
+      border-bottom-color: rgba(212,170,88,.45);
+      color: var(--text);
+    }
 
     .slogan{
       margin: 6px 0 18px;
@@ -90,47 +153,93 @@
       text-transform: uppercase;
     }
 
+    /* Large square tiles */
     .buttonGrid{
       display:grid;
-      grid-template-columns: 1fr;
-      gap:10px;
-      margin-top: 10px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap:14px;
+      margin-top: 12px;
     }
 
     .appBtn{
       display:flex;
+      flex-direction:column;
       align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      padding: 12px 14px;
-      border-radius: 16px;
-      border:1px solid var(--line);
-      background: var(--btn);
+      justify-content:center;
+      text-align:center;
+      gap:10px;
+
+      aspect-ratio: 1 / 1;
+      padding: 18px 16px;
+      border-radius: 18px;
+      border:1px solid rgba(212,170,88,.32);
+      background:
+        radial-gradient(420px 240px at 50% 25%, rgba(212,170,88,.10), transparent 62%),
+        rgba(212,170,88,.08);
       text-decoration:none;
       color: var(--text);
-      transition: background 180ms ease, transform 120ms ease;
+
+      box-shadow: 0 18px 50px rgba(0,0,0,.40);
+      transform: translateY(0) scale(1);
+      transition: transform 180ms ease, box-shadow 220ms ease, background 220ms ease, border-color 220ms ease;
+      position: relative;
+      overflow:hidden;
     }
-    .appBtn:hover{ background: var(--btnHover); }
-    .appBtn:active{ transform: scale(0.99); }
+
+    /* a gentle “sparkle” sweep on hover */
+    .appBtn::before{
+      content:"";
+      position:absolute;
+      inset:-40%;
+      background: linear-gradient(120deg, transparent 35%, rgba(243,209,138,.14) 50%, transparent 65%);
+      transform: translateX(-30%) rotate(10deg);
+      opacity: 0;
+      transition: opacity 220ms ease, transform 520ms ease;
+      pointer-events:none;
+    }
+
+    .appBtn:hover{
+      background:
+        radial-gradient(520px 300px at 50% 20%, rgba(212,170,88,.16), transparent 62%),
+        rgba(212,170,88,.11);
+      border-color: rgba(212,170,88,.55);
+      transform: translateY(-6px) scale(1.03);
+      box-shadow: 0 26px 80px rgba(0,0,0,.55);
+    }
+    .appBtn:hover::before{
+      opacity: 1;
+      transform: translateX(30%) rotate(10deg);
+    }
+
+    .appBtn:active{
+      transform: translateY(-2px) scale(1.01);
+    }
+
+    .appIcon{
+      width: 72px;
+      height: 72px;
+      border-radius: 18px;
+      display:block;
+      object-fit: contain;
+      filter: drop-shadow(0 10px 22px rgba(0,0,0,.45));
+    }
 
     .appName{
-      font-weight: 600;
-      font-size: 14px;
+      font-weight: 650;
+      font-size: 15px;
+      letter-spacing:.2px;
     }
+
     .appUrl{
       font-size: 12px;
       color: var(--muted);
-      overflow:hidden;
-      text-overflow:ellipsis;
       white-space:nowrap;
-      max-width: 55%;
-      text-align:right;
     }
 
     .footer{
       margin-top: 18px;
       padding-top: 14px;
-      border-top: 1px solid var(--line);
+      border-top: 1px solid rgba(212,170,88,.22);
       display:flex;
       align-items:flex-start;
       justify-content:space-between;
@@ -144,12 +253,17 @@
       text-decoration:none;
       border-bottom: 1px solid transparent;
     }
-    .footer a:hover{ border-bottom-color: var(--line); color: var(--text); }
+    .footer a:hover{
+      border-bottom-color: rgba(212,170,88,.45);
+      color: var(--text);
+    }
 
-    @media (max-width: 540px){
-      .card{ padding: 22px 16px; border-radius: 18px; }
-      .appUrl{ max-width: 48%; }
+    @media (max-width: 820px){
+      .buttonGrid{ grid-template-columns: 1fr; }
+      .appBtn{ aspect-ratio: auto; min-height: 132px; }
+      .appIcon{ width: 64px; height: 64px; border-radius: 16px; }
       header{ align-items:flex-start; flex-direction:column; gap:6px; }
+      .card{ padding: 22px 16px; border-radius: 18px; }
     }
   </style>
 </head>
@@ -174,16 +288,19 @@
 
       <div class="buttonGrid" role="list">
         <a class="appBtn" role="listitem" href="https://www.journalboo.com" target="_blank" rel="noopener noreferrer">
+          <img class="appIcon" src="assets/icon/Journal" alt="" aria-hidden="true" />
           <span class="appName">Journal Boo</span>
           <span class="appUrl">www.journalboo.com</span>
         </a>
 
         <a class="appBtn" role="listitem" href="https://www.munchkinboo.com" target="_blank" rel="noopener noreferrer">
+          <img class="appIcon" src="assets/icon/Munchkin" alt="" aria-hidden="true" />
           <span class="appName">Munchkin Boo</span>
           <span class="appUrl">www.munchkinboo.com</span>
         </a>
 
         <a class="appBtn" role="listitem" href="https://www.boo-writer.com" target="_blank" rel="noopener noreferrer">
+          <img class="appIcon" src="assets/icon/Writer" alt="" aria-hidden="true" />
           <span class="appName">Boo Writer</span>
           <span class="appUrl">www.boo-writer.com</span>
         </a>
