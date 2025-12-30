@@ -1,0 +1,201 @@
+<!-- =========================
+     home.html
+     Boo Industries — Paper theme hub
+     ========================= -->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Boo Industries — Home</title>
+  <meta name="description" content="Boo Industries — calm, mindful software applications for everyday peace of mind." />
+  <style>
+    :root{
+      /* Paper theme (matches Boo Writer vibe) */
+      --bg:#f3f0e7;
+      --panel: rgba(255,255,255,.62);
+      --panel2: rgba(0,0,0,.06);
+      --text: rgba(18,18,18,.92);
+      --muted: rgba(18,18,18,.68);
+      --muted2: rgba(18,18,18,.55);
+      --line: rgba(0,0,0,.14);
+      --btn: rgba(0,0,0,.06);
+      --btnHover: rgba(0,0,0,.10);
+      --shadow: 0 20px 60px rgba(0,0,0,.18);
+      --max: 920px;
+      --radius: 22px;
+    }
+
+    *{ box-sizing:border-box; }
+    html, body { height:100%; }
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    .page{
+      min-height:100%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding: 26px 16px;
+    }
+
+    .card{
+      width:min(var(--max), 100%);
+      border:1px solid var(--line);
+      background: var(--panel);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 28px 22px;
+    }
+
+    header{
+      display:flex;
+      align-items:baseline;
+      justify-content:space-between;
+      gap:12px;
+      margin-bottom: 12px;
+    }
+
+    h1{
+      margin:0;
+      font-size: clamp(20px, 3.6vw, 30px);
+      font-weight: 600;
+      letter-spacing:.2px;
+    }
+
+    nav a{
+      color: var(--muted);
+      text-decoration:none;
+      border-bottom: 1px solid transparent;
+      font-size: 13px;
+    }
+    nav a:hover{ border-bottom-color: var(--line); color: var(--text); }
+
+    .slogan{
+      margin: 6px 0 18px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .sectionTitle{
+      margin: 0 0 10px;
+      color: var(--muted2);
+      font-size: 12px;
+      letter-spacing:.16em;
+      text-transform: uppercase;
+    }
+
+    .buttonGrid{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:10px;
+      margin-top: 10px;
+    }
+
+    .appBtn{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding: 12px 14px;
+      border-radius: 16px;
+      border:1px solid var(--line);
+      background: var(--btn);
+      text-decoration:none;
+      color: var(--text);
+      transition: background 180ms ease, transform 120ms ease;
+    }
+    .appBtn:hover{ background: var(--btnHover); }
+    .appBtn:active{ transform: scale(0.99); }
+
+    .appName{
+      font-weight: 600;
+      font-size: 14px;
+    }
+    .appUrl{
+      font-size: 12px;
+      color: var(--muted);
+      overflow:hidden;
+      text-overflow:ellipsis;
+      white-space:nowrap;
+      max-width: 55%;
+      text-align:right;
+    }
+
+    .footer{
+      margin-top: 18px;
+      padding-top: 14px;
+      border-top: 1px solid var(--line);
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:10px;
+      flex-wrap:wrap;
+      color: var(--muted2);
+      font-size: 12px;
+    }
+    .footer a{
+      color: var(--muted);
+      text-decoration:none;
+      border-bottom: 1px solid transparent;
+    }
+    .footer a:hover{ border-bottom-color: var(--line); color: var(--text); }
+
+    @media (max-width: 540px){
+      .card{ padding: 22px 16px; border-radius: 18px; }
+      .appUrl{ max-width: 48%; }
+      header{ align-items:flex-start; flex-direction:column; gap:6px; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <main class="card" aria-label="Boo Industries home">
+      <header>
+        <h1>Boo Industries…</h1>
+        <nav aria-label="Site navigation">
+          <a href="/about.html">About</a>
+          <span aria-hidden="true" style="color:var(--muted2); padding:0 8px;">·</span>
+          <a href="/privacy.html">Privacy</a>
+        </nav>
+      </header>
+
+      <p class="slogan">
+        We make calm, mindful software applications for everyday peace of mind…
+      </p>
+
+      <div class="sectionTitle">Try our free app store today:</div>
+
+      <div class="buttonGrid" role="list">
+        <a class="appBtn" role="listitem" href="https://www.journalboo.com" target="_blank" rel="noopener noreferrer">
+          <span class="appName">Journal Boo</span>
+          <span class="appUrl">www.journalboo.com</span>
+        </a>
+
+        <a class="appBtn" role="listitem" href="https://www.munchkinboo.com" target="_blank" rel="noopener noreferrer">
+          <span class="appName">Munchkin Boo</span>
+          <span class="appUrl">www.munchkinboo.com</span>
+        </a>
+
+        <a class="appBtn" role="listitem" href="https://www.boo-writer.com" target="_blank" rel="noopener noreferrer">
+          <span class="appName">Boo Writer</span>
+          <span class="appUrl">www.boo-writer.com</span>
+        </a>
+      </div>
+
+      <div class="footer">
+        <div>© 2025 James Ritchie and www.boo-industries.com</div>
+        <div>
+          <a href="/privacy.html">Privacy statement</a>
+        </div>
+      </div>
+    </main>
+  </div>
+</body>
+</html>
