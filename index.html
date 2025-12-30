@@ -3,244 +3,131 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Boo Industries — Thoughtful software for quiet moments</title>
-  <meta name="description" content="Boo Industries makes thoughtful software for quiet moments: Boo Writer, Journal Boo, and Munchkin Boo." />
+  <title>Boo Industries</title>
+  <meta name="description" content="Boo Industries — calm, playful tools and experiences." />
   <style>
     :root{
-      --paper: #f7f5ef;
-      --ink: #171615;
-      --muted: #4b4a46;
-      --muted2:#6a6862;
-
-      --card: rgba(255,255,255,.55);
-      --line: 1px solid rgba(0,0,0,.10);
-      --shadow: 0 18px 55px rgba(0,0,0,.10);
-
-      --accent: #8a6a2b;
-      --radius: 22px;
-
-      --serif: ui-serif, Georgia, "Times New Roman", Times, serif;
-      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      /* Paper theme (matches Boo Writer) */
+      --bg:#f3f0e7;
+      --panel: rgba(0,0,0,.06);
+      --text: rgba(18,18,18,.92);
+      --muted: rgba(18,18,18,.68);
+      --line: rgba(0,0,0,.14);
+      --btn: rgba(0,0,0,.06);
+      --btnHover: rgba(0,0,0,.10);
+      --shadow: 0 20px 60px rgba(0,0,0,.18);
+      --max: 920px;
     }
 
     *{ box-sizing:border-box; }
-    html, body{ height:100%; }
+    html, body { height:100%; }
     body{
       margin:0;
-      background:
-        radial-gradient(1100px 820px at 18% 0%, rgba(138,106,43,.10), transparent 58%),
-        radial-gradient(980px 680px at 86% 14%, rgba(138,106,43,.08), transparent 60%),
-        var(--paper);
-      color: var(--ink);
-      font-family: var(--serif);
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      background: var(--bg);
+      color: var(--text);
     }
 
     .wrap{
-      min-height:100%;
-      display:flex;
-      justify-content:center;
-      padding: 42px 16px 64px;
-    }
-    .shell{
-      width: min(980px, 100%);
-      display:flex;
-      flex-direction:column;
-      gap: 26px;
-    }
-
-    header{
-      display:flex;
-      justify-content:space-between;
-      gap: 18px;
-      padding: 8px 6px;
-      flex-wrap: wrap;
-    }
-
-    .brand{
-      max-width: 640px;
-      display:flex;
-      flex-direction:column;
-      gap: 10px;
-    }
-
-    .mark{
+      height:100%;
       display:flex;
       align-items:center;
-      gap: 10px;
-      font-family: var(--sans);
-      letter-spacing:.18em;
-      text-transform: uppercase;
-      font-size: 14px;
-    }
-    .dot{
-      width:12px;height:12px;
-      border-radius:999px;
-      background: rgba(138,106,43,.55);
-      box-shadow: 0 0 0 4px rgba(138,106,43,.14);
-    }
-
-    h1{
-      margin:0;
-      font-size: clamp(36px, 4.6vw, 56px);
-      line-height:1.05;
-      font-weight:650;
-    }
-
-    .slogan{
-      margin:0;
-      font-size:18px;
-      color: var(--muted);
-      max-width:60ch;
-      line-height:1.65;
-    }
-
-    .toplinks{
-      display:flex;
-      gap:10px;
-      font-family: var(--sans);
-    }
-
-    .pill{
-      border: var(--line);
-      background: rgba(255,255,255,.55);
-      padding: 10px 12px;
-      border-radius:999px;
-      font-size:13px;
-      text-decoration:none;
-      color: var(--ink);
+      justify-content:center;
+      padding:24px;
     }
 
     .card{
-      border: var(--line);
-      background: linear-gradient(180deg, rgba(255,255,255,.7), rgba(255,255,255,.45));
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-    }
-
-    .apps{ padding:28px; }
-    .apps-head{ margin-bottom:14px; }
-
-    .grid{
-      display:grid;
-      grid-template-columns: repeat(12,1fr);
-      gap:12px;
-    }
-
-    .appcard{
-      grid-column: span 12;
-      border: var(--line);
-      border-radius:18px;
-      padding:18px;
+      width:min(var(--max), 100%);
+      border:1px solid var(--line);
       background: rgba(255,255,255,.55);
-      display:flex;
-      flex-direction:column;
-      gap:10px;
+      border-radius: 22px;
+      box-shadow: var(--shadow);
+      padding: 28px 22px;
+      text-align:center;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 720ms ease, transform 720ms ease;
+    }
+    .card.show{
+      opacity: 1;
+      transform: translateY(0);
     }
 
-    .actions{
-      display:flex;
-      gap:10px;
-      font-family: var(--sans);
+    h1{
+      margin:0 0 10px;
+      font-size: clamp(22px, 4vw, 34px);
+      font-weight: 560;
+      letter-spacing:.2px;
+    }
+    p{
+      margin:0 0 18px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.55;
     }
 
     .btn{
-      border: var(--line);
-      background: rgba(255,255,255,.65);
-      padding: 10px 12px;
-      border-radius:12px;
-      font-size:13px;
-      text-decoration:none;
-      color: var(--ink);
+      border:1px solid var(--line);
+      background: var(--btn);
+      color: var(--text);
+      padding: 10px 18px;
+      border-radius: 999px;
+      font-size: 14px;
+      cursor:pointer;
+      transition: background 180ms ease, transform 120ms ease;
     }
-    .btn.primary{
-      background: rgba(138,106,43,.16);
-      border-color: rgba(138,106,43,.32);
-    }
+    .btn:hover{ background: var(--btnHover); }
+    .btn:active{ transform: scale(0.98); }
 
-    footer{
-      margin-top: 14px;
-      padding: 12px 6px;
-      font-family: var(--sans);
-      font-size:12.5px;
-      color: var(--muted2);
+    .footer{
+      position: fixed;
+      left:0; right:0; bottom:0;
+      padding: 10px 14px 14px;
       display:flex;
-      justify-content:space-between;
-      flex-wrap: wrap;
-      gap:10px;
+      justify-content:center;
+      color: rgba(18,18,18,.55);
+      font-size: 12px;
+      text-align:center;
+      pointer-events:none;
     }
 
-    @media (min-width:760px){
-      .appcard{ grid-column: span 4; }
+    /* Fade out on enter */
+    .fadeOut{
+      opacity:0 !important;
+      transform: translateY(8px) !important;
     }
   </style>
 </head>
+
 <body>
-  <div class="wrap">
-    <div class="shell">
+  <main class="wrap" aria-label="Boo Industries welcome">
+    <section id="card" class="card">
+      <h1>Hi, welcome to Boo Industries…</h1>
+      <p>Calm, playful experiences — including Munchkin Boo, Journal Boo, and Boo Writer.</p>
+      <button id="enterBtn" class="btn" type="button">Enter</button>
+    </section>
+  </main>
 
-      <header>
-        <div class="brand">
-          <div class="mark">
-            <span class="dot"></span>
-            <strong>Boo Industries</strong>
-          </div>
-          <h1>Thoughtful software<br/>for quiet moments</h1>
-          <p class="slogan">We build calm, friendly tools that make space for focus, reflection, and rest.</p>
-        </div>
+  <div class="footer">© 2025 James Ritchie &amp; Boo Industries…</div>
 
-        <nav class="toplinks">
-          <a class="pill" href="#apps">Apps</a>
-          <a class="pill" href="#about">About</a>
-          <a class="pill" href="#contact">Contact</a>
-        </nav>
-      </header>
+  <script>
+    const card = document.getElementById("card");
+    const enterBtn = document.getElementById("enterBtn");
 
-      <section class="card" id="apps">
-        <div class="apps">
-          <div class="apps-head">
-            <h2>Apps</h2>
-            <p>Quiet tools, each with a single job.</p>
-          </div>
+    // gentle fade-in
+    requestAnimationFrame(() => {
+      setTimeout(() => card.classList.add("show"), 80);
+    });
 
-          <div class="grid">
-            <article class="appcard">
-              <h3>Boo Writer</h3>
-              <p>A minimal, friendly writing space — like a calmer word processor.</p>
-              <div class="actions">
-                <a class="btn primary" href="https://www.boo-writer.com" target="_blank" rel="noopener">Visit Boo Writer</a>
-              </div>
-            </article>
-
-            <article class="appcard">
-              <h3>Journal Boo</h3>
-              <p>A gentle journal companion for writing, prompts, and unwinding.</p>
-              <div class="actions">
-                <a class="btn primary" href="https://www.journalboo.com" target="_blank" rel="noopener">Visit Journal Boo</a>
-              </div>
-            </article>
-
-            <article class="appcard">
-              <h3>Munchkin Boo</h3>
-              <p>Bedtime stories for winding down — calm, cozy, and soft.</p>
-              <div class="actions">
-                <a class="btn primary" href="https://www.munchkinboo.com" target="_blank" rel="noopener">Visit Munchkin Boo</a>
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <footer id="contact">
-        <div>
-          <strong>Boo Industries</strong><br/>
-          Thoughtful software for quiet moments.
-        </div>
-        <div>
-          © 2025 James Ritchie & www.boo-industries.com
-        </div>
-      </footer>
-
-    </div>
-  </div>
+    // Enter action:
+    // Option A (default here): go to /home.html
+    // Option B: reveal a section on the same page (tell me if you prefer this)
+    enterBtn.addEventListener("click", () => {
+      card.classList.add("fadeOut");
+      setTimeout(() => {
+        window.location.href = "/home.html";
+      }, 520);
+    });
+  </script>
 </body>
 </html>
