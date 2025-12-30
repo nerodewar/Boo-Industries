@@ -1,0 +1,163 @@
+<!-- =========================
+     about.html
+     Boo Industries — About
+     ========================= -->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Boo Industries — About</title>
+  <meta name="description" content="About Boo Industries — mindful design ethics, calm experiences, peace of mind." />
+  <style>
+    :root{
+      --bg:#f3f0e7;
+      --panel: rgba(255,255,255,.62);
+      --text: rgba(18,18,18,.92);
+      --muted: rgba(18,18,18,.68);
+      --muted2: rgba(18,18,18,.55);
+      --line: rgba(0,0,0,.14);
+      --btn: rgba(0,0,0,.06);
+      --btnHover: rgba(0,0,0,.10);
+      --shadow: 0 20px 60px rgba(0,0,0,.18);
+      --max: 920px;
+      --radius: 22px;
+    }
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      background: var(--bg);
+      color: var(--text);
+    }
+    .page{
+      min-height:100%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding: 26px 16px;
+    }
+    .card{
+      width:min(var(--max), 100%);
+      border:1px solid var(--line);
+      background: var(--panel);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 28px 22px;
+    }
+    header{
+      display:flex;
+      align-items:baseline;
+      justify-content:space-between;
+      gap:12px;
+      margin-bottom: 12px;
+    }
+    h1{
+      margin:0;
+      font-size: clamp(20px, 3.6vw, 30px);
+      font-weight: 600;
+      letter-spacing:.2px;
+    }
+    nav a{
+      color: var(--muted);
+      text-decoration:none;
+      border-bottom: 1px solid transparent;
+      font-size: 13px;
+    }
+    nav a:hover{ border-bottom-color: var(--line); color: var(--text); }
+
+    .lead{
+      margin: 8px 0 14px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .bullets{
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.7;
+    }
+    .bullets li{ margin: 6px 0; }
+
+    .footer{
+      margin-top: 18px;
+      padding-top: 14px;
+      border-top: 1px solid var(--line);
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:10px;
+      flex-wrap:wrap;
+      color: var(--muted2);
+      font-size: 12px;
+    }
+    .footer a{
+      color: var(--muted);
+      text-decoration:none;
+      border-bottom: 1px solid transparent;
+    }
+    .footer a:hover{ border-bottom-color: var(--line); color: var(--text); }
+
+    .btn{
+      display:inline-block;
+      margin-top: 14px;
+      border:1px solid var(--line);
+      background: var(--btn);
+      color: var(--text);
+      padding: 10px 14px;
+      border-radius: 999px;
+      font-size: 13px;
+      text-decoration:none;
+      transition: background 180ms ease;
+    }
+    .btn:hover{ background: var(--btnHover); }
+
+    @media (max-width: 540px){
+      .card{ padding: 22px 16px; border-radius: 18px; }
+      header{ align-items:flex-start; flex-direction:column; gap:6px; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <main class="card" aria-label="About Boo Industries">
+      <header>
+        <h1>About Boo Industries…</h1>
+        <nav aria-label="Site navigation">
+          <a href="/home.html">Home</a>
+          <span aria-hidden="true" style="color:var(--muted2); padding:0 8px;">·</span>
+          <a href="/privacy.html">Privacy</a>
+        </nav>
+      </header>
+
+      <p class="lead">
+        Founded by James Ritchie in 2025, Boo Industries is an app developer focused on delivering peace of mind
+        for its users through mindful design ethics.
+      </p>
+
+      <p class="lead">
+        We build small, intentional experiences that reduce noise, lower friction, and help people feel calm enough
+        to begin — whether that’s writing, reflecting, or simply taking a moment to breathe.
+      </p>
+
+      <ul class="bullets">
+        <li><strong>Mindful by default:</strong> minimal choices, gentle pacing, and a calm interface.</li>
+        <li><strong>Privacy-respecting:</strong> we aim to collect as little as possible, and be clear about what we do.</li>
+        <li><strong>Everyday usefulness:</strong> tools you can return to without effort.</li>
+      </ul>
+
+      <a class="btn" href="/home.html">Back to home</a>
+
+      <div class="footer">
+        <div>© 2025 James Ritchie and www.boo-industries.com</div>
+        <div><a href="/privacy.html">Privacy statement</a></div>
+      </div>
+    </main>
+  </div>
+</body>
+</html>
