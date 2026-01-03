@@ -1,6 +1,6 @@
 <!-- =========================
      privacy.html
-     Boo Industries — Privacy
+     Boo Industries — Privacy (Frosty grey glass, premium)
      ========================= -->
 <!doctype html>
 <html lang="en">
@@ -11,39 +11,134 @@
   <meta name="description" content="Privacy statement for Boo Industries." />
   <style>
     :root{
-      --bg:#f3f0e7;
-      --panel: rgba(255,255,255,.62);
-      --text: rgba(18,18,18,.92);
-      --muted: rgba(18,18,18,.68);
-      --muted2: rgba(18,18,18,.55);
-      --line: rgba(0,0,0,.14);
-      --shadow: 0 20px 60px rgba(0,0,0,.18);
+      /* ❄️ Frosty grey glass system */
+      --bg:#0f1216;
+      --bg2:#141922;
+
+      --panel: rgba(255,255,255,.055);
+      --panel2: rgba(255,255,255,.035);
+
+      --text: rgba(236,240,246,.92);
+      --muted: rgba(236,240,246,.68);
+      --muted2: rgba(236,240,246,.48);
+
+      --line: rgba(255,255,255,.12);
+      --line2: rgba(255,255,255,.08);
+
+      --btn: rgba(255,255,255,.06);
+      --btnHover: rgba(255,255,255,.10);
+
+      --focus: rgba(170,205,255,.22);
+      --shadow: 0 28px 90px rgba(0,0,0,.55);
+
       --max: 920px;
       --radius: 22px;
     }
+
     *{ box-sizing:border-box; }
     html,body{ height:100%; }
+
     body{
       margin:0;
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji", "Segoe UI Emoji";
-      background: var(--bg);
       color: var(--text);
+
+      /* ❄️ cool, frosty background */
+      background:
+        radial-gradient(1200px 800px at 18% 10%, rgba(170,205,255,.10), transparent 58%),
+        radial-gradient(900px 650px at 85% 15%, rgba(255,255,255,.06), transparent 62%),
+        radial-gradient(900px 650px at 40% 85%, rgba(180,190,210,.06), transparent 60%),
+        linear-gradient(180deg, var(--bg2), var(--bg));
+      position: relative;
+      overflow-x:hidden;
     }
+
+    /* subtle frost grain */
+    body::before{
+      content:"";
+      position: fixed;
+      inset: 0;
+      pointer-events:none;
+      background:
+        radial-gradient(1px 1px at 10% 20%, rgba(255,255,255,.10), transparent 40%),
+        radial-gradient(1px 1px at 30% 70%, rgba(255,255,255,.08), transparent 40%),
+        radial-gradient(1px 1px at 60% 35%, rgba(255,255,255,.10), transparent 40%),
+        radial-gradient(1px 1px at 85% 60%, rgba(255,255,255,.08), transparent 40%);
+      opacity: .30;
+      filter: blur(.2px);
+      transform: translateZ(0);
+    }
+
+    /* soft cold haze */
+    body::after{
+      content:"";
+      position: fixed;
+      inset: -20%;
+      pointer-events:none;
+      background:
+        radial-gradient(closest-side at 55% 35%, rgba(170,205,255,.10), transparent 60%),
+        radial-gradient(closest-side at 45% 55%, rgba(255,255,255,.06), transparent 62%);
+      filter: blur(14px);
+      opacity: .7;
+      transform: translateZ(0);
+    }
+
     .page{
       min-height:100%;
       display:flex;
       align-items:center;
       justify-content:center;
       padding: 26px 16px;
+      position: relative;
+      z-index: 1;
     }
+
     .card{
       width:min(var(--max), 100%);
-      border:1px solid var(--line);
-      background: var(--panel);
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,.075), rgba(255,255,255,.04));
       border-radius: var(--radius);
       box-shadow: var(--shadow);
       padding: 28px 22px;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
     }
+
+    /* frosty rim highlight */
+    .card::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      pointer-events:none;
+      border-radius: inherit;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.12), transparent 38%),
+        radial-gradient(900px 240px at 50% 0%,
+          rgba(170,205,255,.16),
+          transparent 60%);
+      opacity: .85;
+      z-index: 0;
+    }
+
+    /* subtle inner sheen */
+    .card::after{
+      content:"";
+      position:absolute;
+      inset: 1px;
+      border-radius: calc(var(--radius) - 1px);
+      pointer-events:none;
+      background:
+        radial-gradient(700px 220px at 50% 0%, rgba(255,255,255,.08), transparent 55%),
+        radial-gradient(520px 220px at 25% 20%, rgba(170,205,255,.08), transparent 60%);
+      opacity: .9;
+      z-index: 0;
+    }
+
+    .card > *{ position: relative; z-index: 1; }
+
     header{
       display:flex;
       align-items:baseline;
@@ -51,40 +146,55 @@
       gap:12px;
       margin-bottom: 12px;
     }
+
     h1{
       margin:0;
       font-size: clamp(20px, 3.6vw, 30px);
-      font-weight: 600;
+      font-weight: 650;
       letter-spacing:.2px;
+      color: rgba(236,240,246,.95);
     }
+
     nav a{
-      color: rgba(18,18,18,.68);
+      color: var(--muted);
       text-decoration:none;
       border-bottom: 1px solid transparent;
       font-size: 13px;
     }
-    nav a:hover{ border-bottom-color: var(--line); color: var(--text); }
+    nav a:hover{
+      border-bottom-color: rgba(255,255,255,.22);
+      color: rgba(236,240,246,.95);
+    }
 
     .text{
       color: var(--muted);
       font-size: 14px;
       line-height: 1.75;
     }
+
     .text h2{
       font-size: 14px;
       margin: 18px 0 8px;
-      color: var(--text);
+      color: rgba(236,240,246,.92);
+      font-weight: 650;
+      letter-spacing: .1px;
     }
+
     .text ul{
       margin: 8px 0 0;
       padding-left: 18px;
     }
     .text li{ margin: 6px 0; }
 
+    .text strong{
+      color: rgba(236,240,246,.92);
+      font-weight: 650;
+    }
+
     .footer{
       margin-top: 18px;
       padding-top: 14px;
-      border-top: 1px solid var(--line);
+      border-top: 1px solid rgba(255,255,255,.10);
       display:flex;
       align-items:flex-start;
       justify-content:space-between;
@@ -108,7 +218,7 @@
         <h1>Privacy statement</h1>
         <nav aria-label="Site navigation">
           <a href="/home.html">Home</a>
-          <span aria-hidden="true" style="color:rgba(18,18,18,.55); padding:0 8px;">·</span>
+          <span aria-hidden="true" style="color:var(--muted2); padding:0 8px;">·</span>
           <a href="/about.html">About</a>
         </nav>
       </header>
