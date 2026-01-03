@@ -1,6 +1,6 @@
 <!-- =========================
      home.html
-     Boo Industries — Charcoal + ink-gold hub (matches artwork)
+     Boo Industries — Frosty grey glass hub (cool + neutral)
      ========================= -->
 <!doctype html>
 <html lang="en">
@@ -11,20 +11,26 @@
   <meta name="description" content="Boo Industries — calm, mindful software applications for everyday peace of mind." />
   <style>
     :root{
-      /* Charcoal + inky gold (matches uploaded artwork) */
-      --bg:#151311;
-      --bg2:#1b1816;
-      --panel: rgba(18,16,14,.62);
-      --panel2: rgba(255,255,255,.04);
-      --text: rgba(245,238,226,.94);
-      --muted: rgba(245,238,226,.72);
-      --muted2: rgba(245,238,226,.55);
-      --gold:#d4aa58;
-      --gold2:#f3d18a;
-      --line: rgba(212,170,88,.28);
-      --btn: rgba(212,170,88,.10);
-      --btnHover: rgba(212,170,88,.18);
+      /* ❄️ Frosty grey glass system */
+      --bg:#0f1216;
+      --bg2:#141922;
+
+      --panel: rgba(255,255,255,.055);
+      --panel2: rgba(255,255,255,.035);
+
+      --text: rgba(236,240,246,.92);
+      --muted: rgba(236,240,246,.68);
+      --muted2: rgba(236,240,246,.48);
+
+      --line: rgba(255,255,255,.12);
+      --line2: rgba(255,255,255,.08);
+
+      --btn: rgba(255,255,255,.06);
+      --btnHover: rgba(255,255,255,.10);
+
+      --focus: rgba(170,205,255,.22);
       --shadow: 0 28px 90px rgba(0,0,0,.55);
+
       --max: 920px;
       --radius: 22px;
     }
@@ -37,44 +43,43 @@
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji", "Segoe UI Emoji";
       color: var(--text);
 
-      /* charcoal atmosphere + subtle golden bloom */
+      /* ❄️ cool, frosty background */
       background:
-        radial-gradient(1200px 800px at 50% 35%, rgba(255,255,255,.05), transparent 60%),
-        radial-gradient(900px 600px at 20% 70%, rgba(212,170,88,.06), transparent 55%),
+        radial-gradient(1200px 800px at 18% 10%, rgba(170,205,255,.10), transparent 58%),
+        radial-gradient(900px 650px at 85% 15%, rgba(255,255,255,.06), transparent 62%),
+        radial-gradient(900px 650px at 40% 85%, rgba(180,190,210,.06), transparent 60%),
         linear-gradient(180deg, var(--bg2), var(--bg));
       position: relative;
       overflow-x:hidden;
     }
 
-    /* subtle texture */
+    /* subtle frost grain */
     body::before{
       content:"";
       position: fixed;
       inset: 0;
       pointer-events:none;
       background:
-        repeating-linear-gradient(
-          0deg,
-          rgba(255,255,255,.018) 0px,
-          rgba(255,255,255,.018) 1px,
-          transparent 2px,
-          transparent 6px
-        );
-      mix-blend-mode: soft-light;
-      opacity: .35;
+        radial-gradient(1px 1px at 10% 20%, rgba(255,255,255,.10), transparent 40%),
+        radial-gradient(1px 1px at 30% 70%, rgba(255,255,255,.08), transparent 40%),
+        radial-gradient(1px 1px at 60% 35%, rgba(255,255,255,.10), transparent 40%),
+        radial-gradient(1px 1px at 85% 60%, rgba(255,255,255,.08), transparent 40%);
+      opacity: .30;
+      filter: blur(.2px);
+      transform: translateZ(0);
     }
 
-    /* faint ink-glimmer */
+    /* soft cold haze */
     body::after{
       content:"";
       position: fixed;
       inset: -20%;
       pointer-events:none;
       background:
-        radial-gradient(closest-side at 55% 42%, rgba(212,170,88,.10), transparent 60%),
-        radial-gradient(closest-side at 46% 46%, rgba(243,209,138,.06), transparent 62%);
-      filter: blur(10px);
-      opacity: .6;
+        radial-gradient(closest-side at 55% 35%, rgba(170,205,255,.10), transparent 60%),
+        radial-gradient(closest-side at 45% 55%, rgba(255,255,255,.06), transparent 62%);
+      filter: blur(14px);
+      opacity: .7;
       transform: translateZ(0);
     }
 
@@ -90,27 +95,49 @@
 
     .card{
       width:min(var(--max), 100%);
-      border:1px solid var(--line);
-      background: var(--panel);
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,.075), rgba(255,255,255,.04));
       border-radius: var(--radius);
       box-shadow: var(--shadow);
       padding: 28px 22px;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
       position: relative;
       overflow: hidden;
+      isolation: isolate;
     }
 
-    /* subtle top ink stroke */
+    /* frosty rim highlight */
     .card::before{
       content:"";
       position:absolute;
-      left:18px; right:18px; top:14px;
-      height:1px;
-      background: linear-gradient(90deg, transparent, rgba(212,170,88,.55), transparent);
-      opacity:.9;
+      inset:0;
       pointer-events:none;
+      border-radius: inherit;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.12), transparent 38%),
+        radial-gradient(900px 240px at 50% 0%,
+          rgba(170,205,255,.16),
+          transparent 60%);
+      opacity: .85;
+      z-index: 0;
     }
+
+    /* subtle inner sheen */
+    .card::after{
+      content:"";
+      position:absolute;
+      inset: 1px;
+      border-radius: calc(var(--radius) - 1px);
+      pointer-events:none;
+      background:
+        radial-gradient(700px 220px at 50% 0%, rgba(255,255,255,.08), transparent 55%),
+        radial-gradient(520px 220px at 25% 20%, rgba(170,205,255,.08), transparent 60%);
+      opacity: .9;
+      z-index: 0;
+    }
+
+    .card > *{ position: relative; z-index: 1; }
 
     header{
       display:flex;
@@ -123,8 +150,9 @@
     h1{
       margin:0;
       font-size: clamp(20px, 3.6vw, 30px);
-      font-weight: 620;
+      font-weight: 650;
       letter-spacing:.2px;
+      color: rgba(236,240,246,.95);
     }
 
     nav a{
@@ -134,8 +162,8 @@
       font-size: 13px;
     }
     nav a:hover{
-      border-bottom-color: rgba(212,170,88,.45);
-      color: var(--text);
+      border-bottom-color: rgba(255,255,255,.22);
+      color: rgba(236,240,246,.95);
     }
 
     .slogan{
@@ -172,10 +200,12 @@
       aspect-ratio: 1 / 1;
       padding: 18px 16px;
       border-radius: 18px;
-      border:1px solid rgba(212,170,88,.32);
+      border: 1px solid var(--line2);
+
       background:
-        radial-gradient(420px 240px at 50% 25%, rgba(212,170,88,.10), transparent 62%),
-        rgba(212,170,88,.08);
+        radial-gradient(520px 320px at 50% 18%, rgba(170,205,255,.14), transparent 62%),
+        linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.035));
+
       text-decoration:none;
       color: var(--text);
 
@@ -184,14 +214,17 @@
       transition: transform 180ms ease, box-shadow 220ms ease, background 220ms ease, border-color 220ms ease;
       position: relative;
       overflow:hidden;
+
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
     }
 
-    /* a gentle “sparkle” sweep on hover */
+    /* gentle frost sweep on hover */
     .appBtn::before{
       content:"";
       position:absolute;
       inset:-40%;
-      background: linear-gradient(120deg, transparent 35%, rgba(243,209,138,.14) 50%, transparent 65%);
+      background: linear-gradient(120deg, transparent 35%, rgba(255,255,255,.10) 50%, transparent 65%);
       transform: translateX(-30%) rotate(10deg);
       opacity: 0;
       transition: opacity 220ms ease, transform 520ms ease;
@@ -200,9 +233,9 @@
 
     .appBtn:hover{
       background:
-        radial-gradient(520px 300px at 50% 20%, rgba(212,170,88,.16), transparent 62%),
-        rgba(212,170,88,.11);
-      border-color: rgba(212,170,88,.55);
+        radial-gradient(620px 360px at 50% 16%, rgba(170,205,255,.18), transparent 62%),
+        linear-gradient(180deg, rgba(255,255,255,.09), rgba(255,255,255,.04));
+      border-color: rgba(255,255,255,.18);
       transform: translateY(-6px) scale(1.03);
       box-shadow: 0 26px 80px rgba(0,0,0,.55);
     }
@@ -213,6 +246,12 @@
 
     .appBtn:active{
       transform: translateY(-2px) scale(1.01);
+    }
+
+    .appBtn:focus-visible{
+      outline: none;
+      box-shadow: 0 0 0 4px var(--focus), 0 26px 80px rgba(0,0,0,.55);
+      border-color: rgba(255,255,255,.22);
     }
 
     .appIcon{
@@ -239,7 +278,7 @@
     .footer{
       margin-top: 18px;
       padding-top: 14px;
-      border-top: 1px solid rgba(212,170,88,.22);
+      border-top: 1px solid rgba(255,255,255,.10);
       display:flex;
       align-items:flex-start;
       justify-content:space-between;
@@ -254,8 +293,8 @@
       border-bottom: 1px solid transparent;
     }
     .footer a:hover{
-      border-bottom-color: rgba(212,170,88,.45);
-      color: var(--text);
+      border-bottom-color: rgba(255,255,255,.22);
+      color: rgba(236,240,246,.95);
     }
 
     @media (max-width: 820px){
@@ -264,6 +303,10 @@
       .appIcon{ width: 64px; height: 64px; border-radius: 16px; }
       header{ align-items:flex-start; flex-direction:column; gap:6px; }
       .card{ padding: 22px 16px; border-radius: 18px; }
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      .appBtn, .appBtn::before{ transition: none; }
     }
   </style>
 </head>
