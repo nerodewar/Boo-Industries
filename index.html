@@ -7,20 +7,27 @@
   <meta name="description" content="Boo Industries — calm, playful tools and experiences." />
   <style>
     :root{
-      /* Charcoal + inky gold (matches uploaded artwork) */
-      --bg: #151311;                 /* deep charcoal */
-      --bg2:#1b1816;                 /* subtle lift for gradients */
-      --panel: rgba(255, 255, 255, .04);
-      --text: rgba(245, 238, 226, .94);   /* warm paper-ivory */
-      --muted: rgba(245, 238, 226, .70);
-      --line: rgba(212, 170, 88, .28);    /* soft gold */
-      --btn: rgba(212, 170, 88, .10);
-      --btnHover: rgba(212, 170, 88, .18);
-      --shadow: 0 28px 90px rgba(0,0,0,.55);
-      --max: 920px;
+      /* ❄️ Frosty grey glass system (cool + neutral) */
+      --bg: #0f1216;
+      --bg2:#141922;
 
-      --gold: #d4aa58;
-      --gold2:#f3d18a;
+      --text: rgba(236, 240, 246, .92);
+      --muted: rgba(236, 240, 246, .66);
+
+      --line: rgba(255,255,255,.12);
+      --line2: rgba(255,255,255,.08);
+
+      --panel: rgba(255,255,255,.06);
+      --panel2: rgba(255,255,255,.035);
+
+      --btn: rgba(255,255,255,.07);
+      --btnHover: rgba(255,255,255,.12);
+
+      --focus: rgba(170, 205, 255, .22);
+      --shadow: 0 28px 90px rgba(0,0,0,.55);
+
+      --max: 920px;
+      --radius: 22px;
     }
 
     *{ box-sizing:border-box; }
@@ -31,44 +38,43 @@
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji", "Segoe UI Emoji";
       color: var(--text);
 
-      /* Charcoal “paper” feel without images */
+      /* ❄️ Cool, frosty background (no images) */
       background:
-        radial-gradient(1200px 800px at 50% 35%, rgba(255,255,255,.05), transparent 60%),
-        radial-gradient(900px 600px at 20% 70%, rgba(212,170,88,.06), transparent 55%),
+        radial-gradient(1200px 800px at 20% 10%, rgba(170,205,255,.10), transparent 58%),
+        radial-gradient(900px 650px at 85% 15%, rgba(255,255,255,.06), transparent 62%),
+        radial-gradient(900px 650px at 40% 85%, rgba(180,190,210,.06), transparent 60%),
         linear-gradient(180deg, var(--bg2), var(--bg));
       position: relative;
       overflow-x:hidden;
     }
 
-    /* subtle texture */
+    /* subtle frost grain */
     body::before{
       content:"";
       position: fixed;
       inset: 0;
       pointer-events:none;
       background:
-        repeating-linear-gradient(
-          0deg,
-          rgba(255,255,255,.018) 0px,
-          rgba(255,255,255,.018) 1px,
-          transparent 2px,
-          transparent 6px
-        );
-      mix-blend-mode: soft-light;
+        radial-gradient(1px 1px at 10% 20%, rgba(255,255,255,.10), transparent 40%),
+        radial-gradient(1px 1px at 30% 70%, rgba(255,255,255,.08), transparent 40%),
+        radial-gradient(1px 1px at 60% 35%, rgba(255,255,255,.10), transparent 40%),
+        radial-gradient(1px 1px at 85% 60%, rgba(255,255,255,.08), transparent 40%);
       opacity: .35;
+      filter: blur(.2px);
+      transform: translateZ(0);
     }
 
-    /* faint golden “ink” glimmer */
+    /* soft “cold glow” haze */
     body::after{
       content:"";
       position: fixed;
       inset: -20%;
       pointer-events:none;
       background:
-        radial-gradient(closest-side at 55% 42%, rgba(212,170,88,.10), transparent 60%),
-        radial-gradient(closest-side at 46% 46%, rgba(243,209,138,.06), transparent 62%);
-      filter: blur(10px);
-      opacity: .6;
+        radial-gradient(closest-side at 55% 35%, rgba(170,205,255,.10), transparent 60%),
+        radial-gradient(closest-side at 45% 55%, rgba(255,255,255,.06), transparent 62%);
+      filter: blur(14px);
+      opacity: .7;
       transform: translateZ(0);
     }
 
@@ -82,40 +88,54 @@
 
     .card{
       width:min(var(--max), 100%);
-      border:1px solid var(--line);
-      background: rgba(18, 16, 14, .62);
-      border-radius: 22px;
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,.075), rgba(255,255,255,.04));
+      border-radius: var(--radius);
       box-shadow: var(--shadow);
       padding: 30px 24px;
       text-align:center;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
 
       opacity: 0;
       transform: translateY(8px);
       transition: opacity 720ms ease, transform 720ms ease;
       position: relative;
       overflow: hidden;
+      isolation: isolate;
     }
 
-    /* slim top “ink stroke” */
+    /* frosty rim highlight */
     .card::before{
       content:"";
       position:absolute;
-      left:16px; right:16px; top:14px;
-      height:1px;
-      background: linear-gradient(90deg, transparent, rgba(212,170,88,.55), transparent);
-      opacity:.9;
+      inset: 0;
+      pointer-events:none;
+      border-radius: inherit;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.12), transparent 38%),
+        radial-gradient(900px 240px at 50% 0%,
+          rgba(170,205,255,.16),
+          transparent 60%);
+      opacity: .85;
+      z-index: 0;
     }
 
-    /* soft inner sheen */
+    /* subtle inner edge + shimmer */
     .card::after{
       content:"";
       position:absolute;
-      inset: 0;
-      background: radial-gradient(700px 220px at 50% 0%, rgba(212,170,88,.10), transparent 55%);
+      inset: 1px;
+      border-radius: calc(var(--radius) - 1px);
       pointer-events:none;
+      background:
+        radial-gradient(700px 220px at 50% 0%, rgba(255,255,255,.08), transparent 55%),
+        radial-gradient(520px 220px at 25% 20%, rgba(170,205,255,.08), transparent 60%);
+      z-index: 0;
+      opacity: .9;
     }
+
+    .card > *{ position: relative; z-index: 1; }
 
     .card.show{
       opacity: 1;
@@ -125,17 +145,9 @@
     h1{
       margin:0 0 10px;
       font-size: clamp(22px, 4vw, 34px);
-      font-weight: 520;
+      font-weight: 560;
       letter-spacing:.2px;
-      color: rgba(245,238,226,.96);
-    }
-
-    /* small “ink” accent on the greeting */
-    h1 span{
-      background: linear-gradient(90deg, var(--gold2), var(--gold));
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
+      color: rgba(236,240,246,.95);
     }
 
     p{
@@ -146,22 +158,31 @@
     }
 
     .btn{
-      border:1px solid rgba(212,170,88,.40);
+      border: 1px solid var(--line);
       background: var(--btn);
-      color: rgba(245,238,226,.92);
+      color: rgba(236,240,246,.92);
       padding: 10px 18px;
       border-radius: 999px;
       font-size: 14px;
       cursor:pointer;
       transition: background 180ms ease, transform 120ms ease, border-color 180ms ease, box-shadow 180ms ease;
       box-shadow: 0 10px 26px rgba(0,0,0,.35);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
     }
     .btn:hover{
       background: var(--btnHover);
-      border-color: rgba(212,170,88,.55);
+      border-color: rgba(255,255,255,.18);
       box-shadow: 0 14px 34px rgba(0,0,0,.42);
+      transform: translateY(-1px);
     }
     .btn:active{ transform: scale(0.98); }
+
+    .btn:focus-visible{
+      outline: none;
+      box-shadow: 0 0 0 4px var(--focus), 0 14px 34px rgba(0,0,0,.42);
+      border-color: rgba(255,255,255,.22);
+    }
 
     .footer{
       position: fixed;
@@ -169,16 +190,21 @@
       padding: 10px 14px 14px;
       display:flex;
       justify-content:center;
-      color: rgba(245,238,226,.48);
+      color: rgba(236,240,246,.44);
       font-size: 12px;
       text-align:center;
       pointer-events:none;
     }
 
-    /* Fade out on enter */
+    /* Fade out on enter (kept exactly for functionality) */
     .fadeOut{
       opacity:0 !important;
       transform: translateY(8px) !important;
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      .card{ transition: none; opacity: 1; transform: none; }
+      .btn{ transition: none; }
     }
   </style>
 </head>
